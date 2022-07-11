@@ -1,0 +1,28 @@
+<div class="cabecalho">
+  <h3>
+    {{ titulo }}
+  </h3>
+  <div *ngIf="escolhaAte != 1">
+    <span> Escolha até 555 {{ escolhaAte }} </span>
+    <span [ngSwitch]="opcoesSelecionadas.length">
+      <ng-container *ngSwitchCase="0"> (nenhum selecionado) </ng-container>
+      <ng-container *ngSwitchCase="1"> (1 selecionado) </ng-container>
+      <ng-container *ngSwitchDefault>
+        ({{ opcoesSelecionadas.length }} selecionados)
+      </ng-container>
+    </span>
+  </div>
+</div>
+
+<div class="opcoes">
+  <div class="opcao" *ngFor="let opcao of opcoes">
+    <label
+      ><input
+        [type]="escolhaAte == 1 ? 'radio' : 'checkbox'"
+        [checked]="opcaoSelecionada(opcao)"
+        (change)="marcaOuDesmarcaOpcao(opcao)"
+        [disabled]="opcaoDisabled(opcao)"
+      />{{ opcao }}</label
+    >
+  </div>
+</div>
